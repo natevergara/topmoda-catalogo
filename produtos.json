@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "nome": "Macaquinho Paris",
+    "subtitulo": "Crepe GGT",
+    "sticker": "✨ Lançamento",
+    "thumb": "fotos/paris-1.webp",
+    "video": "fotos/paris.mp4",
+    "fotos": [
+      "fotos/paris-1.webp",
+      "fotos/paris-3.webp",
+      "fotos/paris-2.webp",
+      "fotos/paris-4.webp",
+      "fotos/paris-5.webp",
+      "fotos/paris-6.webp",
+      "fotos/paris-7.webp"
+    ]
+  },
+  {
+    "id": 2,
+    "nome": "Conjunto Venus",
+    "subtitulo": "Alfaiataria Elegance",
+    "sticker": "🔥 Mais Vendido",
+    "thumb": "fotos/venus-1.webp",
+    "video": "fotos/venus.mp4",
+    "fotos": [
+      "fotos/venus-1.webp",
+      "fotos/venus-2.webp",
+      "fotos/venus-3.webp",
+      "fotos/venus-4.webp",
+      "fotos/venus-5.webp",
+      "fotos/venus-6.webp",
+      "fotos/venus-7.webp",
+      "fotos/venus-8.webp",
+      "fotos/venus-9.webp",
+      "fotos/venus-10.webp",
+      "fotos/venus-11.webp"
+    ]
+  },
+  {
+    "id": 3,
+    "nome": "Macaquinho Chanel",
+    "subtitulo": "Crepe Alfaiataria",
+    "sticker": "✨ Novo Look",
+    "thumb": "fotos/channel-1.webp",
+    "video": "fotos/channel.mp4",
+    "fotos": [
+      "fotos/channel-1.webp",
+      "fotos/channel-2.webp",
+      "fotos/channel-3.webp",
+      "fotos/channel-4.webp",
+      "fotos/channel-5.webp",
+      "fotos/channel-6.webp"
+    ]
+  }
+]
