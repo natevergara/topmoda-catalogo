@@ -4,12 +4,41 @@ PWA ultra-optimizada para conversión móvil directa a WhatsApp para clientes ma
 
 ---
 
+## 📁 Estructura del Proyecto
+
+```text
+/
+├── index.html           # Interfaz principal y configuración Open Graph
+├── style.css            # Estilos móviles, diseño responsivo y tema oscuro/dorado
+├── app.js               # Orquestación de la UI, estado de horario comercial y modales
+├── sw.js                # Service Worker PWA (almacenamiento en caché y modo offline)
+├── produtos.json        # Fuente de verdad desacoplada del catálogo
+├── README.md            # Este documento
+│
+├── fotos/               # Activos multimedia optimizados (.webp y .mp4)
+│   ├── paris-*.webp
+│   ├── venus-thumb.webp
+│   ├── channel-*.webp
+│   └── *.mp4
+│
+├── fonts/               # Tipografías locales optimizadas en formato WOFF2
+│
+└── docs/                # Documentación técnica y operativa
+    ├── ARQUITECTURA.md          # Fundamentos de arquitectura y decisiones técnicas
+    ├── GUIA_OPERATIVA.md        # Manual para agregar/modificar prendas y fotos
+    ├── CHECKLIST_DESPLIEGUE.md  # Paso a paso para publicar en Cloudflare/Vercel
+    └── adr/
+        └── 001-vanilla-pwa-sobre-spa.md # Registro de decisión arquitectónica
+```
+
+---
+
 ## 🚀 Cómo levantar el proyecto en Local (< 1 minuto)
 
 No requiere instalación de frameworks ni dependencias pesadas:
 
 ```bash
-# Opción 1: Con Python (disponible por defecto en la mayoría de sistemas)
+# Opción 1: Con Python (disponible por defecto en Linux/macOS)
 python3 -m http.server 8080
 
 # Opción 2: Con Node.js
@@ -21,34 +50,12 @@ Abre en tu navegador en `http://localhost:8080`.
 
 ---
 
-## 📝 Cómo agregar o editar productos del Catálogo
+## 📚 Documentación Detallada
 
-El catálogo está desacoplado del código en el archivo **`produtos.json`**.
-
-Para agregar o modificar un producto, solo edita ese archivo:
-
-```json
-[
-  {
-    "id": 1,
-    "nome": "Macaquinho Paris",
-    "subtitulo": "Crepe GGT",
-    "sticker": "✨ Lançamento",
-    "thumb": "fotos/paris-1.webp",
-    "video": "fotos/paris.mp4",
-    "fotos": [
-      "fotos/paris-1.webp",
-      "fotos/paris-3.webp",
-      "fotos/paris-2.webp"
-    ]
-  }
-]
-```
-
-### Reglas para los medios:
-1. **Fotos:** Guarda siempre en formato `.webp` en la carpeta `fotos/` (resolución recomendada: 900x1200 px, peso < 80 KB cada una).
-2. **Video:** Opcional por producto (`video: "fotos/tu-video.mp4"` o déjalo en `null`/elimina la clave si no tiene video). Procura que no supere 1 MB de peso.
-3. **Cupos del catálogo:** El diseño mantiene una cuadrícula limpia de mínimo 6 espacios. Si configuras menos de 6, los espacios restantes muestran "Espaço Disponível".
+* **[Guía de Arquitectura](docs/ARQUITECTURA.md):** Conoce a fondo cómo funciona el sistema, por qué no usamos frameworks pesados y cómo se optimizó para conexiones móviles del Brás.
+* **[Guía Operativa del Catálogo](docs/GUIA_OPERATIVA.md):** Manual paso a paso para agregar prendas a `produtos.json`, comprimir videos y convertir fotos a WebP.
+* **[Checklist de Despliegue (Go-Live)](docs/CHECKLIST_DESPLIEGUE.md):** Instrucciones directas para publicar el sitio gratis en Cloudflare Pages o Vercel cuando decidas lanzarlo.
+* **[ADR 001](docs/adr/001-vanilla-pwa-sobre-spa.md):** Registro formal de la decisión arquitectónica (Vanilla PWA vs React).
 
 ---
 
@@ -58,4 +65,4 @@ Para agregar o modificar un producto, solo edita ese archivo:
 * **Rua Tiers, 461** (Frente a McDonald's)
 
 ## 💬 WhatsApp Comercial
-* **Número:** `+55 11 99400-4379` (configurado en `app.js`).
+* **Número:** `+55 11 99400-4379`
