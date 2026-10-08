@@ -1,4 +1,4 @@
-const CACHE_NAME = 'topmoda-v5';
+const CACHE_NAME = 'topmoda-v6';
 const STATIC_ASSETS = [
     './',
     './index.html',
@@ -6,6 +6,7 @@ const STATIC_ASSETS = [
     './app.js',
     './produtos.json',
     './logo.webp',
+    './logo.jpg',
     './fonts/nuFiD-vYSZviVYUb_rj3ij__anPXDTjYgFE_.woff2',
     './fonts/nuFiD-vYSZviVYUb_rj3ij__anPXDTPYgFE_.woff2',
     './fonts/nuFiD-vYSZviVYUb_rj3ij__anPXDTLYgFE_.woff2',

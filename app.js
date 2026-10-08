@@ -42,52 +42,37 @@ function renderGrid(listaProdutos) {
     if (!grid) return;
     grid.innerHTML = "";
 
-    const totalSlots = Math.max(6, listaProdutos.length);
-    for (let i = 0; i < totalSlots; i++) {
-        const p = listaProdutos[i];
+    listaProdutos.forEach((p) => {
         const card = document.createElement("div");
+        card.className = "product-card";
+        card.setAttribute("role", "button");
+        card.setAttribute("tabindex", "0");
         
-        if (p) {
-            card.className = "product-card";
-            card.setAttribute("role", "button");
-            card.setAttribute("tabindex", "0");
-            
-            const videoBadge = p.video ? `
-                <div class="card-video-badge" title="Vídeo disponível">
-                    <svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3" fill="currentColor"/></svg>
-                </div>` : "";
+        const videoBadge = p.video ? `
+            <div class="card-video-badge" title="Vídeo disponível">
+                <svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3" fill="currentColor"/></svg>
+            </div>` : "";
 
-            card.innerHTML = `
-                <div class="card-thumb">
-                    <span class="card-sticker">${p.sticker || 'Destaque'}</span>
-                    <img src="${p.thumb}" alt="${p.nome}" loading="lazy">
-                    ${videoBadge}
-                </div>
-                <div class="card-meta">
-                    <span class="card-title">${p.nome}</span>
-                    <span class="card-action">Ver fotos ↗</span>
-                </div>
-            `;
-            card.addEventListener("click", () => openModal(p));
-            card.addEventListener("keydown", (e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    openModal(p);
-                }
-            });
-        } else {
-            card.className = "product-card slot-placeholder";
-            card.innerHTML = `
-                <div class="card-thumb">
-                    <svg viewBox="0 0 24 24" width="24" height="24" opacity="0.5"><path d="M4 4h16v16H4z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><path d="M20 15l-5-5L4 20" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-                </div>
-                <div class="card-meta">
-                    <span class="card-title">Espaço Disponível</span>
-                </div>
-            `;
-        }
+        card.innerHTML = `
+            <div class="card-thumb">
+                <span class="card-sticker">${p.sticker || 'Destaque'}</span>
+                <img src="${p.thumb}" alt="${p.nome}" loading="lazy">
+                ${videoBadge}
+            </div>
+            <div class="card-meta">
+                <span class="card-title">${p.nome}</span>
+                <span class="card-action">Ver fotos ↗</span>
+            </div>
+        `;
+        card.addEventListener("click", () => openModal(p));
+        card.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                openModal(p);
+            }
+        });
         grid.appendChild(card);
-    }
+    });
 }
 
 /* ---------- Carga Desacoplada del Catálogo ---------- */
