@@ -1,4 +1,4 @@
-const CACHE_NAME = 'topmoda-v4';
+const CACHE_NAME = 'topmoda-v5';
 const STATIC_ASSETS = [
     './',
     './index.html',

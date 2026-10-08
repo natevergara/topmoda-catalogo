@@ -113,9 +113,9 @@ async function carregarProdutos() {
                 nome: "Conjunto Venus",
                 subtitulo: "Alfaiataria Elegance",
                 sticker: "🔥 Mais Vendido",
-                thumb: "fotos/venus-1.webp",
+                thumb: "fotos/venus-thumb.webp",
                 video: "fotos/venus.mp4",
-                fotos: ["fotos/venus-1.webp", "fotos/venus-2.webp", "fotos/venus-3.webp", "fotos/venus-4.webp", "fotos/venus-5.webp", "fotos/venus-6.webp", "fotos/venus-7.webp", "fotos/venus-8.webp", "fotos/venus-9.webp", "fotos/venus-10.webp", "fotos/venus-11.webp"]
+                fotos: []
             },
             {
                 id: 3,
@@ -123,7 +123,7 @@ async function carregarProdutos() {
                 subtitulo: "Crepe Alfaiataria",
                 sticker: "✨ Novo Look",
                 thumb: "fotos/channel-1.webp",
-                video: "fotos/channel.mp4",
+                video: null,
                 fotos: ["fotos/channel-1.webp", "fotos/channel-2.webp", "fotos/channel-3.webp", "fotos/channel-4.webp", "fotos/channel-5.webp", "fotos/channel-6.webp"]
             }
         ];
@@ -183,13 +183,19 @@ function openModal(prod) {
         }
     }
 
-    prod.fotos.forEach((f, idx) => {
+    const fotos = Array.isArray(prod.fotos) ? prod.fotos : [];
+    fotos.forEach((f, idx) => {
         const loadingAttr = idx === 0 && !prod.video ? 'loading="eager"' : 'loading="lazy"';
         slides.push(`<div class="modal-slide"><img src="${f}" alt="${prod.nome}" ${loadingAttr} decoding="async"></div>`);
     });
 
+    if (slides.length === 0 && prod.thumb) {
+        slides.push(`<div class="modal-slide"><img src="${prod.thumb}" alt="${prod.nome}"></div>`);
+    }
+
     modalSlider.innerHTML = slides.join("");
-    modalDots.innerHTML = slides.map((_, i) => `<i class="${i === 0 ? "on" : ""}"></i>`).join("");
+    modalDots.innerHTML = slides.length > 1 ? slides.map((_, i) => `<i class="${i === 0 ? "on" : ""}"></i>`).join("") : "";
+    modalDots.style.display = slides.length > 1 ? "flex" : "none";
     
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
@@ -202,8 +208,30 @@ function openModal(prod) {
 
     const prevBtn = $(".slider-btn.prev");
     const nextBtn = $(".slider-btn.next");
-    if (prevBtn) prevBtn.onclick = () => { modalSlider.scrollBy({ left: -modalSlider.clientWidth, behavior: "smooth" }); };
-    if (nextBtn) nextBtn.onclick = () => { modalSlider.scrollBy({ left: modalSlider.clientWidth, behavior: "smooth" }); };
+    if (prevBtn) {
+        prevBtn.style.display = slides.length > 1 ? "flex" : "none";
+        prevBtn.onclick = () => { modalSlider.scrollBy({ left: -modalSlider.clientWidth, behavior: "smooth" }); };
+    }
+    if (nextBtn) {
+        nextBtn.style.display = slides.length > 1 ? "flex" : "none";
+        nextBtn.onclick = () => { modalSlider.scrollBy({ left: modalSlider.clientWidth, behavior: "smooth" }); };
+    }
+
+    // Asegurar reproducción y control táctil del video
+    const vid = modalSlider.querySelector("video");
+    if (vid) {
+        vid.muted = true;
+        const playPromise = vid.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                vid.controls = true;
+            });
+        }
+        vid.onclick = () => {
+            if (vid.paused) vid.play();
+            else vid.pause();
+        };
+    }
 }
 
 window.loadModalVideo = function(btn, videoSrc) {

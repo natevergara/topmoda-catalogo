@@ -21,21 +21,9 @@
     "nome": "Conjunto Venus",
     "subtitulo": "Alfaiataria Elegance",
     "sticker": "🔥 Mais Vendido",
-    "thumb": "fotos/venus-1.webp",
+    "thumb": "fotos/venus-thumb.webp",
     "video": "fotos/venus.mp4",
-    "fotos": [
-      "fotos/venus-1.webp",
-      "fotos/venus-2.webp",
-      "fotos/venus-3.webp",
-      "fotos/venus-4.webp",
-      "fotos/venus-5.webp",
-      "fotos/venus-6.webp",
-      "fotos/venus-7.webp",
-      "fotos/venus-8.webp",
-      "fotos/venus-9.webp",
-      "fotos/venus-10.webp",
-      "fotos/venus-11.webp"
-    ]
+    "fotos": []
   },
   {
     "id": 3,
@@ -43,7 +31,7 @@
     "subtitulo": "Crepe Alfaiataria",
     "sticker": "✨ Novo Look",
     "thumb": "fotos/channel-1.webp",
-    "video": "fotos/channel.mp4",
+    "video": null,
     "fotos": [
       "fotos/channel-1.webp",
       "fotos/channel-2.webp",
